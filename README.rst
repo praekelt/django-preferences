@@ -3,6 +3,7 @@ Django Options
 **Django app allowing users to set app specific options through the admin interface.** 
 
 Provides singleton admin views for Options objects and a simple programming interface to option values.
+Singleton views ensures only one option intance is available for each Options class.
 
 Installation
 ------------
