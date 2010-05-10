@@ -8,7 +8,7 @@ Singleton views ensures only one option intance is available for each Options cl
 Installation
 ------------
 
-#. Add *options* to your *INSTALLED APPS* setting.
+#. Add **options** to your **INSTALLED APPS** setting.
 
 #. Add option url include to the project's url.py file. Make sure to use 'admin/' as the start of the include's path since it will override certain admin views::
 
@@ -16,7 +16,7 @@ Installation
 
 Usage
 -----
-To create options for your app create a model storing your options as normal, with the model inheriting from *options.models.Options*. Also specify 'options.models' as your models module::
+To create options for your app create a model storing your options as normal, with the model inheriting from **options.models.Options**. Also specify **options.models** as your models module::
 
     from django.db import models
     from options.model import Options
@@ -25,9 +25,9 @@ To create options for your app create a model storing your options as normal, wi
         __module__ = 'options.models' 
         portal_contact_email = models.EmailField()
 
-Admin options are specified as per usual, no changes are needed. Your options will show up under the *Options* app label in Django admin.
+Admin options are specified as per usual, no changes are needed. Your options will show up under the **Options** app label in Django admin.
 
-Options can be accessed in python by importing the *options* module and traversing to your required option in the form *options.<ModelName>.field*, i.e.::
+Options can be accessed in python by importing the **options** module and traversing to your required option in the form **options.<ModelName>.<field>**, i.e.::
 
     import options
 
