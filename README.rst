@@ -29,6 +29,6 @@ Admin options are specified as per usual, no changes are needed. Your options wi
 
 Options can be accessed in python by importing the **options** module and traversing to your required option in the form **options.<ModelName>.<field>**, i.e.::
 
-    import options
+    from options import options
 
     portal_contact_email = options.MyOptions.portal_contact_email
