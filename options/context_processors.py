@@ -1,4 +1,4 @@
 from options import options
 
-def options(request):
+def options_cp(request):
     return {'options': options}
