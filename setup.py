@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='django-options',
+    name='django-preferences',
     version='0.0.1',
-    description='Django app allowing users to set app specific settings through the admin interface.',
+    description='Django app allowing users to set app specific preferences through the admin interface.',
     long_description = open('README.rst', 'r').read(),
     author='Praekelt Foundation',
     author_email='dev@praekelt.com',
     license='BSD',
-    url='http://github.com/praekelt/django-options',
+    url='http://github.com/praekelt/django-preferences',
     packages = find_packages(),
     include_package_data=True,
     classifiers = [
