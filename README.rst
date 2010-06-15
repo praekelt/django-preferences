@@ -10,7 +10,7 @@ Installation
 
 #. Add **preferences** to your **INSTALLED APPS** setting.
 
-#. Add preferences url include to the project's url.py file. Make sure to use 'admin/' as the start of the include's path since it will override certain admin views::
+#. Add preferences url include to the project's url.py file BEFORE your admin urls include statement. Make sure to use 'admin/' as the start of the include's path since it will override certain admin views::
 
     (r'^admin/', include('preferences.urls')),
 
@@ -32,3 +32,16 @@ Preferences can be accessed in python by importing the **preferences** module an
     from preferences import preferences
 
     portal_contact_email = preferences.MyPreferences.portal_contact_email
+
+
+
+Change Log
+---------
+0.0.1
+~~~~~
+
+   #. First super alpha release
+
+0.0.2
+~~~~~
+   #. Doc update to indicate importance of placing url include before admin url include.
