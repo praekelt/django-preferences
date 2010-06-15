@@ -36,7 +36,8 @@ Preferences can be accessed in python by importing the **preferences** module an
 
 
 Change Log
----------
+----------
+
 0.0.1
 ~~~~~
 
@@ -45,3 +46,4 @@ Change Log
 0.0.2
 ~~~~~
    #. Doc update to indicate importance of placing url include before admin url include.
+
