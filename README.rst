@@ -19,7 +19,7 @@ Usage
 To create preferences for your app create a model storing your preferences as normal, with the model inheriting from **preferences.models.Preferences**. Also specify **preferences.models** as your models module::
 
     from django.db import models
-    from preferences.model import Preferences
+    from preferences.models import Preferences
 
     class MyPreferences(Preferences):
         __module__ = 'preferences.models' 
