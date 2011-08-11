@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.4 (2011-08-11)
+------------------
+#. Cleanup. Docs polish.
+
 0.0.3
 -----
 #. Spelling correction, thanks tiktuk.
