@@ -5,12 +5,15 @@ if not settings.configured:
     settings.configure(
         DATABASE_ENGINE='sqlite3',
         INSTALLED_APPS=[
+            'django.contrib.sites',
             'preferences.tests',
             'preferences',
+
         ],
         TEMPLATE_CONTEXT_PROCESSORS=(
             'preferences.context_processors.preferences_cp',
         ),
+        SITE_ID=1,
     )
  
 from django.test.simple import run_tests

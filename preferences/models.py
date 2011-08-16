@@ -1,11 +1,24 @@
 from django.db import models
+from django.dispatch import receiver
 
 import preferences
 from preferences.managers import SingletonManager
 
 class Preferences(models.Model):
     singleton = SingletonManager()
+    sites = models.ManyToManyField('sites.Site', null=True, blank=True)
+   
+    def __unicode__(self):
+        site_names = [site.name for site in self.sites.all()]
+        prefix = self._meta.verbose_name_plural.capitalize()
 
+        if len(site_names) > 1:
+            return '%s for sites %s and %s.' % (prefix, ', '.join(site_names[:-1]), site_names[-1])
+        elif len(site_names) == 1:
+            return '%s for site %s.' % (prefix, site_names[0])
+        return '%s without assigned site.' % prefix
+
+@receiver(models.signals.class_prepared)
 def preferences_class_prepared(sender, *args, **kwargs):
     cls = sender
    
@@ -15,4 +28,13 @@ def preferences_class_prepared(sender, *args, **kwargs):
         # add property for preferences object to preferences.preferences
         setattr(preferences.Preferences, cls._meta.object_name, property(lambda x: cls.singleton.get()))
 
-models.signals.class_prepared.connect(preferences_class_prepared)
+@receiver(models.signals.m2m_changed)
+def site_cleanup(sender, action, instance, **kwargs):
+    if action == 'post_add':
+        if isinstance(instance, Preferences):
+            site_conflicts = instance.__class__.objects.filter(sites__in=instance.sites.all()).distinct()
+
+            for conflict in site_conflicts:
+                if conflict != instance:
+                    for site in instance.sites.all():
+                        conflict.sites.remove(site)
