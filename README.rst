@@ -19,6 +19,13 @@ Installation
 
     (r'^admin/', include('preferences.urls')),
 
+# Optionally, add ``preferences.context_processors.preferences_cp`` to your `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ settings. This will automatically add a ``preferences`` variable to your template context if you use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ to create your context, i.e.::
+    
+    TEMPLATE_CONTEXT_PROCESSORS = (
+        ...other context processors...,
+        "preferences.context_processors.preferences_cp",
+    )
+
 Usage
 -----
 To create preferences for your app create a Django ORM model as usual, with the model inheriting from ``preferences.models.Preferences``. Also specify ``preferences.models`` as your models module::
@@ -37,5 +44,9 @@ Preferences can be accessed in Python by importing the ``preferences`` module an
     from preferences import preferences
 
     portal_contact_email = preferences.MyPreferences.portal_contact_email
+
+If you've specified the ``preferences.context_processors.preferences_cp`` as a `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ you can similarly access your preferences within templates through the ``preferences`` variable, i.e.::
+
+    {{ preferences.MyPreferences.portal_contact_email }}
 
 
