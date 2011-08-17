@@ -12,7 +12,7 @@ class TestRunner(test):
 
 setup(
     name='django-preferences',
-    version='0.0.4',
+    version='0.0.5',
     description='Django app allowing users to set app specific preferences through the admin interface.',
     long_description = open('README.rst', 'r').read() + open('AUTHORS.rst', 'r').read() + open('CHANGELOG.rst', 'r').read(),
     author='Praekelt Foundation',
