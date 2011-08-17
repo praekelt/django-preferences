@@ -17,9 +17,9 @@ Installation
 
 #. Add ``preferences`` to your ``INSTALLED APPS`` setting.
 
-#. Add ``'django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_ to be installed.
+#. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_ to be installed.
 
-# Optionally, add ``preferences.context_processors.preferences_cp`` to your `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ settings. This will automatically add a ``preferences`` variable to your template context if you use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ to create your context, i.e.::
+#. Optionally, add ``preferences.context_processors.preferences_cp`` to your `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ settings. This will automatically add a ``preferences`` variable to your template context if you use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ to create your context (see Usage below), i.e.::
     
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...other context processors...,
@@ -28,7 +28,7 @@ Installation
 
 Usage
 -----
-To create preferences for your app create a Django ORM model as usual, with the model inheriting from ``preferences.models.Preferences``. Also specify ``preferences.models`` as your models module::
+To create preferences for your app create a Django ORM model as usual, with the model inheriting from ``preferences.models.Preferences``. Also specify ``preferences.models`` as your model's module::
 
     from django.db import models
     from preferences.models import Preferences
@@ -37,7 +37,7 @@ To create preferences for your app create a Django ORM model as usual, with the 
         __module__ = 'preferences.models' 
         portal_contact_email = models.EmailField()
 
-Admin classes are specified as per usual, but admin classes have to inherit from or be registered with ``preferences.admin.PreferencesAdmin``, i.e.::
+Admin classes are specified as per usual, except that they have to inherit from or be registered with ``preferences.admin.PreferencesAdmin``, i.e.::
 
     from django.contrib import admin
 
