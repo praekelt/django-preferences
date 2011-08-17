@@ -9,6 +9,9 @@ class Preferences(models.Model):
     sites = models.ManyToManyField('sites.Site', null=True, blank=True)
    
     def __unicode__(self):
+        """
+        Include site names.
+        """
         site_names = [site.name for site in self.sites.all()]
         prefix = self._meta.verbose_name_plural.capitalize()
 
@@ -20,16 +23,21 @@ class Preferences(models.Model):
 
 @receiver(models.signals.class_prepared)
 def preferences_class_prepared(sender, *args, **kwargs):
+    """
+    Adds various preferences members to preferences.preferences, thus enabling easy access from code.
+    """
     cls = sender
-   
     if issubclass(cls, Preferences):
-        # add singleton manager to subclasses
+        # Add singleton manager to subclasses.
         cls.add_to_class('singleton', SingletonManager())
-        # add property for preferences object to preferences.preferences
+        # Add property for preferences object to preferences.preferences.
         setattr(preferences.Preferences, cls._meta.object_name, property(lambda x: cls.singleton.get()))
 
 @receiver(models.signals.m2m_changed)
 def site_cleanup(sender, action, instance, **kwargs):
+    """
+    Make sure there is only a single preferences object per site. So remove sites from pre-existing preferences objects.
+    """
     if action == 'post_add':
         if isinstance(instance, Preferences):
             site_conflicts = instance.__class__.objects.filter(sites__in=instance.sites.all()).distinct()
