@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.0.5 (2011-08-17)
+------------------
+#. Added sites support.
+#. Added unittests.
+
 0.0.4 (2011-08-11)
 ------------------
 #. Cleanup. Docs polish.
