@@ -5,7 +5,7 @@ Django Preferences
 Provides singleton admin views for Preferences objects and a simple interface to preference values.
 Singleton views ensure only one preference intance per site is available for each ``Preferences`` class.
 
-**NOTE**: django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means preferences you can have multiple preferences associated with different sites.
+**NOTE**: django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
 
 .. contents:: Contents
     :depth: 5
