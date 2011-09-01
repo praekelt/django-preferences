@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.contrib.sites.models import Site
 
+
 class SingletonManager(models.Manager):
     """
     Returns only a single preferences object per site.
@@ -12,7 +13,7 @@ class SingletonManager(models.Manager):
         If preferences do not exist create it.
         """
         queryset = super(SingletonManager, self).get_query_set()
-    
+
         # Get current site
         current_site = None
         if getattr(settings, 'SITE_ID', None) != None:
@@ -29,5 +30,5 @@ class SingletonManager(models.Manager):
             obj = self.model.objects.create()
             if current_site != None:
                 obj.sites.add(current_site)
-         
+
         return queryset
