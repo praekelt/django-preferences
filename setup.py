@@ -1,14 +1,10 @@
 from setuptools import setup, find_packages
 from setuptools.command.test import test
 
-class TestRunner(test):
-    def run(self, *args, **kwargs):
-        if self.distribution.install_requires:
-            self.distribution.fetch_build_eggs(self.distribution.install_requires)
-        if self.distribution.tests_require:
-            self.distribution.fetch_build_eggs(self.distribution.tests_require)
-        from runtests import runtests
-        runtests()
+def run_tests(self):
+    from setuptest.runtests import runtests
+    return runtests(self)
+test.run_tests = run_tests
 
 setup(
     name='django-preferences',
@@ -19,14 +15,13 @@ setup(
     author_email='dev@praekelt.com',
     license='BSD',
     test_suite = 'preferences.tests',
-    cmdclass={'test': TestRunner},
     url='http://github.com/praekelt/django-preferences',
-    packages = find_packages(),
-    tests_require = [
-        'django',
+    packages=find_packages(),
+    tests_require=[
+        'django-setuptest',
     ],
     include_package_data=True,
-    classifiers = [
+    classifiers=[
         "Programming Language :: Python",
         "License :: OSI Approved :: BSD License",
         "Development Status :: 4 - Beta",
