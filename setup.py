@@ -1,10 +1,4 @@
 from setuptools import setup, find_packages
-from setuptools.command.test import test
-
-def run_tests(self):
-    from setuptest.runtests import runtests
-    return runtests(self)
-test.run_tests = run_tests
 
 setup(
     name='django-preferences',
@@ -14,11 +8,11 @@ setup(
     author='Praekelt Foundation',
     author_email='dev@praekelt.com',
     license='BSD',
-    test_suite = 'preferences.tests',
+    test_suite='setuptest.SetupTestSuite',
     url='http://github.com/praekelt/django-preferences',
     packages=find_packages(),
     tests_require=[
-        'django-setuptest',
+        'django-setuptest>=0.0.6',
     ],
     include_package_data=True,
     classifiers=[
