@@ -5,7 +5,13 @@ Django Preferences
 Provides singleton admin views for Preferences objects and a simple interface to preference values.
 Singleton views ensure only one preference intance per site is available for each ``Preferences`` class.
 
-**NOTE**: django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
+.. note:: 
+
+    django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
+
+.. note::
+
+    django-preferences version 0.0.5 and higher requires Django 1.3 and higher for correct operation. If you are getting the super vague ``Error: cannot import name receiver`` error on startup either update to Django 1.3 or use django-preferences version 0.0.4 or earlier. 
 
 .. contents:: Contents
     :depth: 5
