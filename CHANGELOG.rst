@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.0.6
+-----
+#. Better packaging.
+
 0.0.5 (2011-08-17)
 ------------------
 #. Added sites support.
