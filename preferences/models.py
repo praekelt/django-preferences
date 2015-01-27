@@ -17,8 +17,7 @@ class Preferences(models.Model):
         prefix = self._meta.verbose_name_plural.capitalize()
 
         if len(site_names) > 1:
-            return '%s for sites %s and %s.' % (prefix, ', '.\
-                    join(site_names[:-1]), site_names[-1])
+            return '%s for sites %s and %s.' % (prefix, ', '.join(site_names[:-1]), site_names[-1])
         elif len(site_names) == 1:
             return '%s for site %s.' % (prefix, site_names[0])
         return '%s without assigned site.' % prefix
@@ -35,8 +34,7 @@ def preferences_class_prepared(sender, *args, **kwargs):
         # Add singleton manager to subclasses.
         cls.add_to_class('singleton', SingletonManager())
         # Add property for preferences object to preferences.preferences.
-        setattr(preferences.Preferences, cls._meta.object_name, \
-                property(lambda x: cls.singleton.get()))
+        setattr(preferences.Preferences, cls._meta.object_name, property(lambda x: cls.singleton.get()))
 
 
 @receiver(models.signals.m2m_changed)
@@ -47,8 +45,8 @@ def site_cleanup(sender, action, instance, **kwargs):
     """
     if action == 'post_add':
         if isinstance(instance, Preferences):
-            site_conflicts = instance.__class__.objects.filter(\
-                    sites__in=instance.sites.all()).distinct()
+            site_conflicts = instance.__class__.objects.filter(
+                sites__in=instance.sites.all()).distinct()
 
             for conflict in site_conflicts:
                 if conflict != instance:
