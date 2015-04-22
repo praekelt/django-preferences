@@ -4,7 +4,7 @@ Changelog
 next
 ----
 #. Cleanup and fixing of tests courtesy of senyor.
-#. Rewrite distinct query so it works with Oracle.
+#. Rewrite distinct query so it works with Oracle backend.
 
 0.0.6
 -----
