@@ -44,9 +44,11 @@ def site_cleanup(sender, action, instance, **kwargs):
     So remove sites from pre-existing preferences objects.
     """
     if action == 'post_add':
-        if isinstance(instance, Preferences):
+        if isinstance(instance, Preferences) \
+            and hasattr(instance.__class__, 'objects'):
             site_conflicts = instance.__class__.objects.filter(
-                sites__in=instance.sites.all()).distinct()
+                sites__in=instance.sites.all()
+            ).only('id').distinct()
 
             for conflict in site_conflicts:
                 if conflict != instance:

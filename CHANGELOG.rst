@@ -1,6 +1,11 @@
 Changelog
 =========
 
+next
+----
+#. Cleanup and fixing of tests courtesy of senyor.
+#. Rewrite distinct query so it works with Oracle.
+
 0.0.6
 -----
 #. Better packaging.
