@@ -51,6 +51,6 @@ def site_cleanup(sender, action, instance, **kwargs):
             ).only('id').distinct()
 
             for conflict in site_conflicts:
-                if conflict != instance:
+                if conflict.id != instance.id:
                     for site in instance.sites.all():
                         conflict.sites.remove(site)
