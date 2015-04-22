@@ -8,15 +8,16 @@ setup(
     author='Praekelt Foundation',
     author_email='dev@praekelt.com',
     license='BSD',
-    test_suite='setuptest.SetupTestSuite',
+    test_suite='setuptest.setuptest.SetupTestSuite',
     url='http://github.com/praekelt/django-preferences',
     packages=find_packages(),
     tests_require=[
-        'django-setuptest>=0.0.6',
+        'django-setuptest>=0.1.6',
+        'django<1.8',
     ],
     include_package_data=True,
     install_requires=[
-        'Django',
+        'django',
     ],
     classifiers=[
         "Programming Language :: Python",
