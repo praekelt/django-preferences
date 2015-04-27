@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.1
+---
+#. Cleanup and fixing of tests courtesy of senyor.
+#. Rewrite distinct query so it works with Oracle backend.
+
 0.0.6
 -----
 #. Better packaging.

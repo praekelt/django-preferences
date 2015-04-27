@@ -1,3 +1,9 @@
 *.swp
 *.pyc
 *.egg-info
+*.egg
+
+atlassian-ide-plugin.xml
+*.iml
+.idea/
+build/
