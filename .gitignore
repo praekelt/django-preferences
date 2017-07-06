@@ -2,8 +2,9 @@
 *.pyc
 *.egg-info
 *.egg
-
+.tox
 atlassian-ide-plugin.xml
 *.iml
 .idea/
 build/
+ve/

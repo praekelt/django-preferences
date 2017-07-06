@@ -1,11 +1,11 @@
 Django Preferences
 ==================
-**Django app allowing users to set app specific preferences through the admin interface.** 
+**Django app allowing users to set app specific preferences through the admin interface.**
 
 Provides singleton admin views for Preferences objects and a simple interface to preference values.
 Singleton views ensure only one preference intance per site is available for each ``Preferences`` class.
 
-.. note:: 
+.. note::
 
     django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
 
@@ -23,10 +23,10 @@ Installation
 
 #. Add ``preferences`` to your ``INSTALLED APPS`` setting.
 
-#. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_ to be installed.
+#. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires Django's "sites" framework to be installed.
 
-#. Optionally, add ``preferences.context_processors.preferences_cp`` to your `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ settings. This will automatically add a ``preferences`` variable to your template context if you use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ to create your context (see Usage below), i.e.::
-    
+#. Optionally, add ``preferences.context_processors.preferences_cp`` to your template context processors settings. This will automatically add a ``preferences`` variable to your template context::
+
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...other context processors...,
         "preferences.context_processors.preferences_cp",
@@ -40,7 +40,6 @@ To create preferences for your app create a Django ORM model as usual, with the 
     from preferences.models import Preferences
 
     class MyPreferences(Preferences):
-        __module__ = 'preferences.models' 
         portal_contact_email = models.EmailField()
 
 Admin classes are specified as per usual, except that they have to inherit from or be registered with ``preferences.admin.PreferencesAdmin``, i.e.::
@@ -63,5 +62,4 @@ Preferences can be accessed in Python by importing the ``preferences`` module an
 If you've specified the ``preferences.context_processors.preferences_cp`` as a `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ you can similarly access your preferences within templates through the ``preferences`` variable, i.e.::
 
     {{ preferences.MyPreferences.portal_contact_email }}
-
 

@@ -1,10 +1,9 @@
-from unittest import TestCase
-
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.template import RequestContext, Template
+from django.test import TestCase
 from django.test.client import RequestFactory
 
 from preferences import context_processors, preferences
@@ -21,12 +20,8 @@ class AdminTestCase(TestCase):
 
         # With only one preferences object redirect to its change view.
         response = admin_obj.changelist_view(request)
-        self.failUnlessEqual(
-            response.items()[1][1],
-            '/admin/preferences/mypreferences/1/',
-            'Should redirect to change view if only one \
-preferences object available'
-        )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/admin/tests/mypreferences/1/change/')
 
         # With multiple preferences display listing view.
         MyPreferences.objects.create()
@@ -37,6 +32,7 @@ display listing if multiple preferences objects are available.')
 
     def tearDown(self):
         MyPreferences.objects.all().delete()
+        super(AdminTestCase, self).tearDown()
 
 
 class ContextProcessorsTestCase(TestCase):
@@ -67,6 +63,7 @@ available as part of preferences var in template context.")
 
     def tearDown(self):
         MyPreferences.objects.all().delete()
+        super(ContextProcessorsTestCase, self).tearDown()
 
 
 class ModelsTestCase(TestCase):
@@ -108,8 +105,8 @@ SITE_ID should have preferences for current site.")
         """
         # When creating new preferences for a site, said site should be
         # removed from existing preference sites.
-        site1 = Site.objects.create()
-        site2 = Site.objects.create()
+        site1 = Site.objects.create(domain="testserver")
+        site2 = Site.objects.create(domain="another")
 
         # Add preferences for site 1.
         site1_preferences = MyPreferences.objects.create()
@@ -138,6 +135,7 @@ SITE_ID should have preferences for current site.")
     def tearDown(self):
         MyPreferences.objects.all().delete()
         settings.SITE_ID = None
+        super(ModelsTestCase, self).tearDown()
 
 
 class SingletonManagerTestCase(TestCase):
@@ -167,3 +165,4 @@ class SingletonManagerTestCase(TestCase):
     def tearDown(self):
         MyPreferences.objects.all().delete()
         settings.SITE_ID = None
+        super(SingletonManagerTestCase, self).tearDown()
