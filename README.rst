@@ -23,9 +23,9 @@ Installation
 
 #. Add ``preferences`` to your ``INSTALLED APPS`` setting.
 
-#. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_ to be installed.
+#. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires Django's "sites" framework to be installed.
 
-#. Optionally, add ``preferences.context_processors.preferences_cp`` to your `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ settings. This will automatically add a ``preferences`` variable to your template context if you use `RequestContext <https://docs.djangoproject.com/en/dev/ref/templates/api/#subclassing-context-requestcontext>`_ to create your context (see Usage below), i.e.::
+#. Optionally, add ``preferences.context_processors.preferences_cp`` to your template context processors settings. This will automatically add a ``preferences`` variable to your template context::
 
     TEMPLATE_CONTEXT_PROCESSORS = (
         ...other context processors...,
