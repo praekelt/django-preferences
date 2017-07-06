@@ -1,8 +1,8 @@
 Changelog
 =========
 
-next
-----
+0.2
+---
 #. Move to tox for tests.
 #. Django 1.9 to 1.11 support. The official minimum supported version is 1.9.
 
