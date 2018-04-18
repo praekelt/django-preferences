@@ -8,7 +8,7 @@ from preferences.managers import SingletonManager
 class Preferences(models.Model):
     objects = models.Manager()
     singleton = SingletonManager()
-    sites = models.ManyToManyField('sites.Site', null=True, blank=True)
+    sites = models.ManyToManyField('sites.Site', blank=True)
 
     def __unicode__(self):
         """
