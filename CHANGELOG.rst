@@ -1,6 +1,10 @@
 Changelog
 =========
 
+next
+----
+#. Django 2 and Python 3.5 compatibility. Django 1.9 is no longer supported.
+
 0.2
 ---
 #. Move to tox for tests.

@@ -21,18 +21,17 @@ class AdminTestCase(TestCase):
         # With only one preferences object redirect to its change view.
         response = admin_obj.changelist_view(request)
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(response.url, '/admin/tests/mypreferences/1/change/')
+        self.assertEqual(
+            response.url,
+            '/admin/tests/mypreferences/%s/change/' % MyPreferences.objects.all()[0].id
+        )
 
         # With multiple preferences display listing view.
-        MyPreferences.objects.create()
+        obj = MyPreferences.objects.create()
         response = admin_obj.changelist_view(request)
         response.render()
-        self.failUnless('changelist-form' in response.content, 'Should \
+        self.failUnless('changelist-form' in response.content.decode('utf-8'), 'Should \
 display listing if multiple preferences objects are available.')
-
-    def tearDown(self):
-        MyPreferences.objects.all().delete()
-        super(AdminTestCase, self).tearDown()
 
 
 class ContextProcessorsTestCase(TestCase):
@@ -60,10 +59,6 @@ available in template context.")
 preferences.MyPreferences }}{% endif %}")
         self.failUnless(t.render(context_instance), "MyPreferences should be \
 available as part of preferences var in template context.")
-
-    def tearDown(self):
-        MyPreferences.objects.all().delete()
-        super(ContextProcessorsTestCase, self).tearDown()
 
 
 class ModelsTestCase(TestCase):
@@ -132,11 +127,6 @@ SITE_ID should have preferences for current site.")
         self.failUnlessEqual(MyPreferences.objects.filter(sites__in=[site1, site2]).distinct().get(),
                              some_more_preferences)
 
-    def tearDown(self):
-        MyPreferences.objects.all().delete()
-        settings.SITE_ID = None
-        super(ModelsTestCase, self).tearDown()
-
 
 class SingletonManagerTestCase(TestCase):
 
@@ -161,8 +151,3 @@ class SingletonManagerTestCase(TestCase):
         obj = MyPreferences.singleton.get()
         self.failUnlessEqual(second_site, obj.sites.get(), "With SITE_ID \
                 should have preferences for current site.")
-
-    def tearDown(self):
-        MyPreferences.objects.all().delete()
-        settings.SITE_ID = None
-        super(SingletonManagerTestCase, self).tearDown()

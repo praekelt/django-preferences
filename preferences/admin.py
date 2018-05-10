@@ -1,7 +1,7 @@
 from django.contrib import admin
-from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.utils.decorators import method_decorator
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_protect
 
 csrf_protect_m = method_decorator(csrf_protect)

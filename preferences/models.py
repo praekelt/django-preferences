@@ -23,6 +23,8 @@ class Preferences(models.Model):
             return '%s for site %s.' % (prefix, site_names[0])
         return '%s without assigned site.' % prefix
 
+    __str__ = __unicode__
+
 
 @receiver(models.signals.class_prepared)
 def preferences_class_prepared(sender, *args, **kwargs):
