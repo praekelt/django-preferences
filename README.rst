@@ -8,6 +8,9 @@ Django Preferences
 .. image:: https://coveralls.io/repos/github/praekelt/django-preferences/badge.svg?branch=develop
     :target: https://coveralls.io/github/praekelt/django-preferences?branch=develop
 
+.. image:: https://badge.fury.io/py/django-preferences.svg
+    :target: https://badge.fury.io/py/django-preferences
+
 .. contents:: Contents
     :depth: 5
 
