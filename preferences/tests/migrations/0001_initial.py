@@ -11,7 +11,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('preferences', '0001_initial'),
+        ('preferences', '0002_auto_20181220_0803'),
     ]
 
     operations = [

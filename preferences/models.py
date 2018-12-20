@@ -8,7 +8,7 @@ from preferences.managers import SingletonManager
 class Preferences(models.Model):
     objects = models.Manager()
     singleton = SingletonManager()
-    sites = models.ManyToManyField('sites.Site', null=True, blank=True)
+    sites = models.ManyToManyField('sites.Site', blank=True)
 
     def __unicode__(self):
         """
@@ -22,6 +22,8 @@ class Preferences(models.Model):
         elif len(site_names) == 1:
             return '%s for site %s.' % (prefix, site_names[0])
         return '%s without assigned site.' % prefix
+
+    __str__ = __unicode__
 
 
 @receiver(models.signals.class_prepared)

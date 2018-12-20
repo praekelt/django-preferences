@@ -12,6 +12,7 @@ class SingletonManager(models.Manager):
         Return the first preferences object for the current site.
         If preferences do not exist create it.
         """
+
         queryset = super(SingletonManager, self).get_queryset()
 
         # Get current site
@@ -23,9 +24,7 @@ class SingletonManager(models.Manager):
         if current_site is not None:
             queryset = queryset.filter(sites=settings.SITE_ID)
 
-        try:
-            queryset.get()
-        except self.model.DoesNotExist:
+        if not queryset.exists():
             # Create object (for current site) if it doesn't exist.
             obj = self.model.objects.create()
             if current_site is not None:
