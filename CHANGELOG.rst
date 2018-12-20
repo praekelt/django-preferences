@@ -5,6 +5,13 @@ next
 ----
 #. Django 2 and Python 3.5 compatibility. Django 1.9 is no longer supported.
 
+
+1.0.0
+---
+#. Support Django 1.11, 2.0 & 2.1 remove support for Django < 1.11
+#. Support Python 2.7, 3.5-3.7
+#. Added tests coverage
+
 0.2
 ---
 #. Move to tox for tests.
