@@ -81,5 +81,6 @@ Preferences can be accessed in Python by importing the ``preferences`` module an
 
 
 If you've specified the ``preferences.context_processors.preferences_cp`` as a `TEMPLATES <https://docs.djangoproject.com/en/1.11/topics/templates>`_ you can similarly access your preferences within templates through the ``preferences`` variable, i.e.::
+
     {{ preferences.MyPreferences.portal_contact_email }}
 
