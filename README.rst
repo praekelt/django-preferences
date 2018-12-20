@@ -11,13 +11,10 @@ Django Preferences
 .. image:: https://badge.fury.io/py/django-preferences.svg
     :target: https://badge.fury.io/py/django-preferences
 
-.. contents:: Contents
-    :depth: 5
-
 Provides singleton admin views for Preferences objects and a simple interface to preference values.
 Singleton views ensure only one preference instance per site is available for each ``Preferences`` class.
 
-.. note::
+..
 
     **Requires** and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
 
