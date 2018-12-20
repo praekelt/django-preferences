@@ -2,19 +2,34 @@ Django Preferences
 ==================
 **Django app allowing users to set app specific preferences through the admin interface.**
 
-Provides singleton admin views for Preferences objects and a simple interface to preference values.
-Singleton views ensure only one preference intance per site is available for each ``Preferences`` class.
+.. image:: https://travis-ci.org/praekelt/django-preferences.svg?branch=develop
+    :target: https://travis-ci.org/praekelt/django-preferences
 
-.. note::
-
-    django-preferences requires and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
-
-.. note::
-
-    django-preferences version 0.0.5 and higher requires Django 1.3 and higher for correct operation. If you are getting the super vague ``Error: cannot import name receiver`` error on startup either update to Django 1.3 or use django-preferences version 0.0.4 or earlier. 
+.. image:: https://coveralls.io/repos/github/praekelt/django-preferences/badge.svg?branch=develop
+    :target: https://coveralls.io/github/praekelt/django-preferences?branch=develop
 
 .. contents:: Contents
     :depth: 5
+
+Provides singleton admin views for Preferences objects and a simple interface to preference values.
+Singleton views ensure only one preference instance per site is available for each ``Preferences`` class.
+
+.. note::
+
+    **Requires** and supports `Django's "sites" framework <https://docs.djangoproject.com/en/dev/ref/contrib/sites/>`_, which means you can have multiple preferences, each associated with a particular site.
+
+.. contents:: Contents
+    :depth: 5
+
+Requirements
+------------
+
+#. Python 2.7, 3.5-3.7
+
+#. Django 1.11, 2.0, 2.1
+
+#. django.contrib.sites
+
 
 Installation
 ------------
@@ -25,12 +40,17 @@ Installation
 
 #. Add ``django.contrib.sites`` to your ``INSTALLED APPS`` setting. django-preferences associates preferences to specific sites and thus requires Django's "sites" framework to be installed.
 
-#. Optionally, add ``preferences.context_processors.preferences_cp`` to your template context processors settings. This will automatically add a ``preferences`` variable to your template context::
+#. Optionally, add ``preferences.context_processors.preferences_cp`` to your template option settings. This will automatically add a ``preferences`` variable to your template context::
 
-    TEMPLATE_CONTEXT_PROCESSORS = (
-        ...other context processors...,
-        "preferences.context_processors.preferences_cp",
-    )
+     TEMPLATES = [{
+         ...
+         'OPTIONS': {
+             'context_processors': [
+                 ...
+                 'preferences.context_processors.preferences_cp',
+             ],
+         },
+     }]
 
 Usage
 -----
@@ -59,7 +79,7 @@ Preferences can be accessed in Python by importing the ``preferences`` module an
 
     portal_contact_email = preferences.MyPreferences.portal_contact_email
 
-If you've specified the ``preferences.context_processors.preferences_cp`` as a `TEMPLATE_CONTEXT_PROCESSORS <https://docs.djangoproject.com/en/dev/ref/settings/#std:setting-TEMPLATE_CONTEXT_PROCESSORS>`_ you can similarly access your preferences within templates through the ``preferences`` variable, i.e.::
 
+If you've specified the ``preferences.context_processors.preferences_cp`` as a `TEMPLATES <https://docs.djangoproject.com/en/1.11/topics/templates>`_ you can similarly access your preferences within templates through the ``preferences`` variable, i.e.::
     {{ preferences.MyPreferences.portal_contact_email }}
 
